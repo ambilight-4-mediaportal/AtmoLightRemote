@@ -37,6 +37,10 @@ public class Main extends Activity {
   private CheckBox EnablePrioties;
   private ColorMixer mixer=null;
 
+  // Preference settings
+  Context mContext;
+  SharedPreferences mPrefs;
+
   // Log settings
   private static final String TAG = ColorMixer.class.getSimpleName();
 
@@ -54,7 +58,7 @@ public class Main extends Activity {
   @Override
   public void onCreate(Bundle icicle) {
 
-    /* Turn off multicast filter */
+    // Turn off multicast filter
     WifiManager wm = (WifiManager)getSystemService(Context.WIFI_SERVICE);
     WifiManager.MulticastLock multicastLock = wm.createMulticastLock("debuginfo");
     multicastLock.acquire();
@@ -62,11 +66,16 @@ public class Main extends Activity {
     super.onCreate(icicle);
     setContentView(R.layout.main);
 
+    // Default UI bindings
     color=(TextView)findViewById(R.id.color);
     EnablePrioties=(CheckBox)findViewById(R.id.cbUsePriorities);
 
     mixer=(ColorMixer)findViewById(R.id.mixer);
     mixer.setOnColorChangedListener(onColorChange);
+
+    // Settings
+    mContext = getApplicationContext();
+    mPrefs = mContext.getSharedPreferences("AtmoLightRemotePrefs", Context.MODE_PRIVATE);
 
     MultiCastInstance();
     LoadSettings();
@@ -116,8 +125,7 @@ public class Main extends Activity {
 
   private void LoadSettings()
   {
-    Context mContext = getApplicationContext();
-    SharedPreferences mPrefs = mContext.getSharedPreferences("AtmoLightRemotePrefs", Context.MODE_PRIVATE);
+
     int argb = mPrefs.getInt("AtmoLightColors", 0);
     Boolean PrioritiesEnabled = mPrefs.getBoolean("PrioritiesEnabled", false);
 
@@ -130,8 +138,6 @@ public class Main extends Activity {
     int argb = mixer.getColor();
     Boolean PrioritiesEnabled = EnablePrioties.isChecked();
 
-    Context mContext = getApplicationContext();
-    SharedPreferences mPrefs = mContext.getSharedPreferences("AtmoLightRemotePrefs", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = mPrefs.edit();
     editor.putInt("AtmoLightColors", argb);
     editor.putBoolean("PrioritiesEnabled", PrioritiesEnabled);

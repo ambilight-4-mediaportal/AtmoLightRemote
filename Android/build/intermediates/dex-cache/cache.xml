@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\exploded-aar\AtmoLightRemote\colormixer\unspecified\classes.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="a9963c243859c18c8f04e0d2d118124dbf47562c">
-        <dex dex="P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\pre-dexed\debug\classes-ecff23309ece7067d7990b60a948aab6ad8d6d38.jar" />
-    </item>
-    <item
-        jar="P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\exploded-aar\com.commonsware.cwac\colormixer\0.6.1\classes.jar"
+        jar="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\exploded-aar\com.commonsware.cwac\colormixer\0.6.1\classes.jar"
         jumboMode="false"
         revision="21.0.0"
         sha1="79806a73bc32605b0f00109ad83006b54de1e65b">
-        <dex dex="P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\pre-dexed\release\classes-6e7bac388a34bdfe9e8ae615ca57e112e163d789.jar" />
+        <dex dex="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\pre-dexed\release\classes-6d363950c63123da3579b401d461b4371728c6f7.jar" />
+    </item>
+    <item
+        jar="P:\Android\AndroidStudioProjects\AtmoLightRemote\Android\atmolightremote\build\intermediates\exploded-aar\Android\colormixer\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="bed95416164a4484fa2d24077147db04cd0b0a79">
+        <dex dex="P:\Android\AndroidStudioProjects\AtmoLightRemote\Android\atmolightremote\build\intermediates\pre-dexed\debug\classes-09e3a5cd22d05a33bfafa9060457685ec91a06a5.jar" />
     </item>
     <item
         jar="P:\Android\AndroidStudioProjects\AtmoOrb\atmoorb\build\intermediates\exploded-aar\com.commonsware.cwac\colormixer\0.6.1\classes.jar"
@@ -28,13 +28,6 @@
         revision="19.1.0"
         sha1="1b3addbbd4f111dcf5e688172b7423c24133388b">
         <dex dex="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\pre-dexed\debug\classes-804f0c0f18bf1398e75c5fa779b658a89cf7ed1e.jar" />
-    </item>
-    <item
-        jar="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\exploded-aar\com.commonsware.cwac\colormixer\0.6.1\classes.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="79806a73bc32605b0f00109ad83006b54de1e65b">
-        <dex dex="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\pre-dexed\release\classes-6d363950c63123da3579b401d461b4371728c6f7.jar" />
     </item>
     <item
         jar="P:\Android\AndroidStudioProjects\cwac-colormixer\demo\build\intermediates\exploded-aar\cwac-colormixer\colormixer\unspecified\classes.jar"

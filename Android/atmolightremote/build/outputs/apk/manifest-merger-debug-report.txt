@@ -27,13 +27,11 @@ ADDED from AndroidManifest.xml:4:3
 		ADDED from AndroidManifest.xml:4:21
 application
 ADDED from AndroidManifest.xml:8:5
-MERGED from AtmoLightRemote:colormixer:unspecified:11:5
+MERGED from Android:colormixer:unspecified:11:5
 	android:label
 		ADDED from AndroidManifest.xml:8:18
 	android:icon
 		ADDED from AndroidManifest.xml:8:51
-	android:logo
-		ADDED from AndroidManifest.xml:8:86
 activity#com.EvilCorp.atmolightremote.Main
 ADDED from AndroidManifest.xml:9:9
 	android:screenOrientation
@@ -54,7 +52,7 @@ ADDED from AndroidManifest.xml:13:17
 		ADDED from AndroidManifest.xml:13:27
 uses-permission#android.permission.INTERNET
 ADDED from AndroidManifest.xml:17:5
-MERGED from AtmoLightRemote:colormixer:unspecified:9:5
+MERGED from Android:colormixer:unspecified:9:5
 	android:name
 		ADDED from AndroidManifest.xml:17:22
 uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
@@ -63,7 +61,7 @@ ADDED from AndroidManifest.xml:18:5
 		ADDED from AndroidManifest.xml:18:22
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
-MERGED from AtmoLightRemote:colormixer:unspecified:7:5
+MERGED from Android:colormixer:unspecified:7:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

@@ -107,4 +107,4 @@
         android:id="@+id/btnClearPriorities"
         android:onClick="btnClearPriorities" />
 
-</LinearLayout><!-- From: file:/P:/Android/AndroidStudioProjects/AtmoLightRemote/atmolightremote/res/layout/main.xml -->
+</LinearLayout><!-- From: file:/P:/Android/AndroidStudioProjects/AtmoLightRemote/Android/atmolightremote/res/layout/main.xml -->
