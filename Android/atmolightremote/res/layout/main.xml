@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:mixer="http://schemas.android.com/apk/res-auto"
+  android:layout_width="fill_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView android:id="@+id/color"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+  />
+
+    <com.commonsware.cwac.colormixer.ColorMixer
+    android:id="@+id/mixer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    mixer:cwac_colormixer_color="#FFFF00FF"
+  />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Effects"
+        android:id="@+id/lblEffects" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:backgroundTint="#fffa1600"
+        android:layout_weight="0.22">
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGifReader"
+            android:text="GIF reader"
+            android:layout_gravity="right|top"
+            android:onClick="btnSetEffectGifReader" />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLiveMode"
+            android:text="Live Mode"
+            android:onClick="btnSetEffectLiveMode"
+            android:layout_gravity="left|top" />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAtmoWinColorChanger"
+            android:text="AW CC"
+            android:layout_gravity="left|center_vertical"
+            android:onClick="btnSetEffectAtmoWinColorChanger" />
+
+        <Button
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:text="Disable"
+            android:id="@+id/btnTurnOffLights"
+            android:onClick="btnTurnOffLights"
+            android:layout_gravity="center_horizontal|top" />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:text="AW EL"
+            android:layout_gravity="right|center_vertical"
+            android:onClick="btnSetEffectAtmoWinExternalLiveMode" />
+
+        <Button
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAtmoWinColorChangerLR"
+            android:text="AW CC-LR"
+            android:layout_gravity="center"
+            android:onClick="btnSetEffectAtmoWinColorChangerLR" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Priority"
+        android:id="@+id/textView" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Priorities (override AtmoLight)"
+        android:id="@+id/cbUsePriorities"
+        android:onClick="chkSavePriorties" />
+
+    <Button
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Clear Priorities"
+        android:id="@+id/btnClearPriorities"
+        android:onClick="btnClearPriorities" />
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AtmoLightRemote.iml" filepath="$PROJECT_DIR$/AtmoLightRemote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/colormixer/colormixer.iml" filepath="$PROJECT_DIR$/colormixer/colormixer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atmolightremote/remote.iml" filepath="$PROJECT_DIR$/atmolightremote/remote.iml" />
+    </modules>
+  </component>
+</project>

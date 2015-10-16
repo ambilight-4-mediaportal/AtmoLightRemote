@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorMixer"><attr format="color" name="cwac_colormixer_color"/></declare-styleable>
+    <!-- From: file:/home/mmurphy/stuff/CommonsWare/projects/CWAC/ColorMixer/colormixer/res/values/cwac_colormixer_strings.xml -->
+    <eat-comment/>
+    <string name="cwac_colormixer_blue">B</string>
+    <string name="cwac_colormixer_cancel">Cancel</string>
+    <string name="cwac_colormixer_green">G</string>
+    <string name="cwac_colormixer_red">R</string>
+    <string name="cwac_colormixer_set">Set</string>
+</resources>

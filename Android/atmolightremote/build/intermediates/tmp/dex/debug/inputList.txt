@@ -1,0 +1,2 @@
+P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\classes\debug
+P:\Android\AndroidStudioProjects\AtmoLightRemote\atmolightremote\build\intermediates\pre-dexed\debug\classes-ecff23309ece7067d7990b60a948aab6ad8d6d38.jar
