@@ -16,10 +16,10 @@ android {
     buildToolsVersion "21.0.0"
 
     defaultConfig {
-        applicationId "evilcorp.atmolightremote"
-        minSdkVersion 21
+        applicationId "ambilight4mediaportal.atmolightremote"
+        minSdkVersion 19
         targetSdkVersion 21
-        versionName "0.03"
+        versionName "0.04"
     }
     sourceSets {
         main {

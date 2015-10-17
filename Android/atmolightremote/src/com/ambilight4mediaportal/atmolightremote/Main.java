@@ -1,25 +1,18 @@
-package com.EvilCorp.atmolightremote;
+package com.ambilight4mediaportal.atmolightremote;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 
-import com.EvilCorp.atmoserverdroid.R;
 import com.commonsware.cwac.colormixer.ColorMixer;
 import com.commonsware.cwac.colormixer.ColorMixerActivity;
 
@@ -103,14 +96,6 @@ public class Main extends Activity {
       }
   }
 
-  public class SettingsActivity extends PreferenceActivity {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      addPreferencesFromResource(R.xml.preferences);
-    }
-  }
-
   @Override
   public void onActivityResult(int requestCode, int resultCode,
                                Intent result) {
@@ -149,9 +134,9 @@ public class Main extends Activity {
             public void onColorChange(int argb) {
 
               /// On color change send commands to Orb
-              Log.d(TAG, String.valueOf(Color.red(argb)));
-              Log.d(TAG, String.valueOf(Color.green(argb)));
-              Log.d(TAG, String.valueOf(Color.blue(argb)));
+              //Log.d(TAG, String.valueOf(Color.red(argb)));
+              //Log.d(TAG, String.valueOf(Color.green(argb)));
+              //Log.d(TAG, String.valueOf(Color.blue(argb)));
 
               int red = Color.red(argb);
               int green = Color.green(argb);
@@ -209,14 +194,14 @@ public class Main extends Activity {
             }
 
             if(cCommand == "effect") {
-              msg = "atmolight|" + cCommand + "|" + cEffect + "|" + priority;
+              msg = "atmolight|" + cCommand + "|" + cEffect + "|" + priority + "|;";
             }
             else if (cCommand == "static")
             {
-              msg = "atmolight|" + cCommand + "|" + colors + "|" + priority;
+              msg = "atmolight|" + cCommand + "|" + colors + "|" + priority + "|;";
             }
             else if(cCommand == "priorityClear") {
-              msg = "atmolight|priority|" + "0";
+              msg = "atmolight|priority|" + "0" + "|;";
             }
 
             byte data[] = msg.toString().getBytes();

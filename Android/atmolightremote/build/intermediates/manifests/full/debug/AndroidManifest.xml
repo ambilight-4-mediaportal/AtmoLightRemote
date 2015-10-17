@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="evilcorp.atmolightremote"
+    package="ambilight4mediaportal.atmolightremote"
     android:versionCode="1"
-    android:versionName="0.03" >
+    android:versionName="0.04" >
 
     <uses-sdk
-        android:minSdkVersion="21"
+        android:minSdkVersion="19"
         android:targetSdkVersion="21" />
 
     <supports-screens
@@ -21,7 +21,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="com.EvilCorp.atmolightremote.Main"
+            android:name="com.ambilight4mediaportal.atmolightremote.Main"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>

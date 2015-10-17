@@ -6,11 +6,11 @@ ADDED from AndroidManifest.xml:2:1
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 	android:versionName
-		ADDED from AndroidManifest.xml:3:68
+		ADDED from AndroidManifest.xml:3:81
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 	android:versionCode
-		ADDED from AndroidManifest.xml:3:44
+		ADDED from AndroidManifest.xml:3:57
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 	xmlns:android
@@ -32,12 +32,12 @@ MERGED from Android:colormixer:unspecified:11:5
 		ADDED from AndroidManifest.xml:8:18
 	android:icon
 		ADDED from AndroidManifest.xml:8:51
-activity#com.EvilCorp.atmolightremote.Main
+activity#com.ambilight4mediaportal.atmolightremote.Main
 ADDED from AndroidManifest.xml:9:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:10:13
 	android:label
-		ADDED from AndroidManifest.xml:9:68
+		ADDED from AndroidManifest.xml:9:81
 	android:name
 		ADDED from AndroidManifest.xml:9:19
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
