@@ -17,9 +17,10 @@ android {
 
     defaultConfig {
         applicationId "ambilight4mediaportal.atmolightremote"
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 21
-        versionName "0.04"
+        versionCode = 1
+        versionName "0.10"
     }
     sourceSets {
         main {

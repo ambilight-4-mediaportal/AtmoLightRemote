@@ -20,91 +20,123 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15" />
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Effects"
+        android:text="Generic effects"
         android:id="@+id/lblEffects" />
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:backgroundTint="#fffa1600"
-        android:layout_weight="0.22">
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        >
 
         <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGifReader"
-            android:text="GIF reader"
-            android:layout_gravity="right|top"
-            android:onClick="btnSetEffectGifReader" />
-
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnLiveMode"
-            android:text="Live Mode"
-            android:onClick="btnSetEffectLiveMode"
-            android:layout_gravity="left|top" />
-
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAtmoWinColorChanger"
-            android:text="AW CC"
-            android:layout_gravity="left|center_vertical"
-            android:onClick="btnSetEffectAtmoWinColorChanger" />
-
-        <Button
-            android:layout_width="109dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Disable"
-            android:id="@+id/btnTurnOffLights"
-            android:onClick="btnTurnOffLights"
-            android:layout_gravity="center_horizontal|top" />
+            android:id="@+id/btnDisableEffect"
+            android:onClick="btnSetEffectDisable"
+            android:layout_gravity="left|top"
+            android:layout_row="0"
+            android:layout_column="0"/>
 
         <Button
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:text="AW EL"
-            android:layout_gravity="right|center_vertical"
-            android:onClick="btnSetEffectAtmoWinExternalLiveMode" />
+            android:id="@+id/btnStaticColorEffect"
+            android:text="Static"
+            android:layout_gravity="center_horizontal|top"
+            android:onClick="btnSetEffectStaticColor"/>
 
         <Button
-            android:layout_width="109dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:id="@+id/btnAtmoWinColorChangerLR"
-            android:text="AW CC-LR"
-            android:layout_gravity="center"
-            android:onClick="btnSetEffectAtmoWinColorChangerLR" />
+            android:id="@+id/btnMediaportalLiveEffect"
+            android:text="Live Mode"
+            android:onClick="btnSetEffectLiveMode"
+            android:layout_gravity="right|top"
+            android:layout_row="0"
+            android:layout_column="4"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGifReaderEffect"
+            android:text="GIF reader"
+            android:layout_gravity="center_horizontal|bottom"
+            android:onClick="btnSetEffectGifReader"
+            android:layout_row="0"
+            android:layout_column="6"/>
 
     </FrameLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Priority"
-        android:id="@+id/textView" />
+        android:text="Atmowin effects"
+        android:id="@+id/textView"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.10">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAtmoWinColorChangerEffect"
+            android:text="Color C"
+            android:onClick="btnSetEffectAtmoWinColorChanger" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAtmoWinColorChangerLREffect"
+            android:text="Color C-LR"
+            android:onClick="btnSetEffectAtmoWinColorChangerLR"
+            android:layout_gravity="center_horizontal|top"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bnAtmoWinExternalLiveEffect"
+            android:text="Live"
+            android:layout_gravity="right|top"
+            android:onClick="btnSetEffectAtmoWinExternalLiveMode" />
+
+    </FrameLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enable Priorities (override AtmoLight)"
+        android:text="Enable Priorities"
         android:id="@+id/cbUsePriorities"
         android:onClick="chkSavePriorties" />
 
     <Button
-        android:layout_width="164dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear Priorities"
         android:id="@+id/btnClearPriorities"
-        android:onClick="btnClearPriorities" />
+        android:onClick="btnClearPriorities"
+        android:layout_gravity="left|top"/>
 
 </LinearLayout>

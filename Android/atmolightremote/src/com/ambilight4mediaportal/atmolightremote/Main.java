@@ -33,6 +33,7 @@ public class Main extends Activity {
   // Preference settings
   Context mContext;
   SharedPreferences mPrefs;
+  boolean startingApp = true;
 
   // Log settings
   private static final String TAG = ColorMixer.class.getSimpleName();
@@ -50,7 +51,6 @@ public class Main extends Activity {
 
   @Override
   public void onCreate(Bundle icicle) {
-
     // Turn off multicast filter
     WifiManager wm = (WifiManager)getSystemService(Context.WIFI_SERVICE);
     WifiManager.MulticastLock multicastLock = wm.createMulticastLock("debuginfo");
@@ -72,6 +72,7 @@ public class Main extends Activity {
 
     MultiCastInstance();
     LoadSettings();
+    startingApp = false;
   }
 
   public void MultiCastInstance()
@@ -99,12 +100,13 @@ public class Main extends Activity {
   @Override
   public void onActivityResult(int requestCode, int resultCode,
                                Intent result) {
-    if (requestCode==COLOR_REQUEST && resultCode==RESULT_OK) {
-      mixer.setColor(result.getIntExtra(ColorMixerActivity.COLOR,
-              mixer.getColor()));
-    }
-    else {
-      super.onActivityResult(requestCode, resultCode, result);
+    if(!startingApp) {
+        if (requestCode == COLOR_REQUEST && resultCode == RESULT_OK) {
+            mixer.setColor(result.getIntExtra(ColorMixerActivity.COLOR,
+                    mixer.getColor()));
+        } else {
+            super.onActivityResult(requestCode, resultCode, result);
+        }
     }
   }
 
@@ -132,20 +134,22 @@ public class Main extends Activity {
   private ColorMixer.OnColorChangedListener onColorChange=
           new ColorMixer.OnColorChangedListener() {
             public void onColorChange(int argb) {
+                if (!startingApp) {
 
-              /// On color change send commands to Orb
-              //Log.d(TAG, String.valueOf(Color.red(argb)));
-              //Log.d(TAG, String.valueOf(Color.green(argb)));
-              //Log.d(TAG, String.valueOf(Color.blue(argb)));
+                    /// On color change send commands to Orb
+                    //Log.d(TAG, String.valueOf(Color.red(argb)));
+                    //Log.d(TAG, String.valueOf(Color.green(argb)));
+                    //Log.d(TAG, String.valueOf(Color.blue(argb)));
 
-              int red = Color.red(argb);
-              int green = Color.green(argb);
-              int blue = Color.blue(argb);
+                    int red = Color.red(argb);
+                    int green = Color.green(argb);
+                    int blue = Color.blue(argb);
 
-              String colorText = "R: " + red + " / " + "G: " + green + " / " +"B: " + blue;
-              color.setText(colorText);
-              SaveSettings();
-              setColor(red,green,blue);
+                    String colorText = "R: " + red + " / " + "G: " + green + " / " + "B: " + blue;
+                    color.setText(colorText);
+                    SaveSettings();
+                    setColor(red, green, blue);
+                }
             }
           };
 
@@ -224,16 +228,7 @@ public class Main extends Activity {
     }
   }
 
-  private ColorMixer.OnColorChangedListener onDialogSet=
-          new ColorMixer.OnColorChangedListener() {
-            public void onColorChange(int argb) {
-              mixer.setColor(argb);
-            }
-          };
-
-  public void btnTurnOffLights(View v) {
-    mixer.setColor(0);
-    SaveSettings();
+  public void btnSetEffectDisable(View v) {
     setEffect("LEDsDisabled");
   }
 
@@ -252,8 +247,13 @@ public class Main extends Activity {
   public void btnSetEffectAtmoWinExternalLiveMode(View v) {
     setEffect("ExternalLiveMode");
   }
+
   public void btnSetEffectAtmoWinColorChangerLR(View v) {
     setEffect("AtmoWinColorchangerLR");
+  }
+
+  public void btnSetEffectStaticColor(View v) {
+    setEffect("StaticColor");
   }
 
   public void chkSavePriorties(View v) {
