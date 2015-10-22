@@ -1,2 +1,1 @@
-include ':colormixer', ':remote'
-project(':remote').projectDir = new File('atmolightremote')
+include ':app'
