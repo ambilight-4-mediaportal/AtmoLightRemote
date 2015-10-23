@@ -1,7 +1,7 @@
-<resources>
+<resources>>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo">
+    <style name="AppTheme" parent="android:Theme.Material">
     </style>
 
     <style name="ThemeHoloWithActionBar" parent="android:Theme.Holo">
@@ -12,4 +12,5 @@
     <style name="ActionBarTabStyle" parent="@android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:minHeight">40dip</item>
     </style>
+
 </resources>

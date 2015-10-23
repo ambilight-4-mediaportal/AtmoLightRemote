@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:mixer="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="fill_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-    android:weightSum="1">
+  android:weightSum="1"
+  tools:context=".MainActivity"
+              android:id="@+id/LinearLayout">
 
     <TextView android:id="@+id/color"
     android:layout_width="wrap_content"
@@ -32,9 +35,10 @@
         android:id="@+id/lblEffects" />
 
     <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_weight="0.34"
+        android:id="@+id/FrameLayoutEffects">
 
         <Button
             android:layout_width="120dp"
@@ -67,61 +71,53 @@
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:id="@+id/btnGifReaderEffect"
-            android:text="GIF reader"
-            android:layout_gravity="center_horizontal|bottom"
-            android:onClick="btnSetEffectGifReader"
-            android:layout_row="0"
-            android:layout_column="6"/>
-
-    </FrameLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Atmowin effects"
-        android:id="@+id/textView"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.10">
+            android:id="@+id/btnAtmoWinColorChangerEffect"
+            android:text="Color C"
+            android:onClick="btnSetEffectAtmoWinColorChanger"
+            android:layout_gravity="left|bottom"/>
 
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:id="@+id/btnAtmoWinColorChangerEffect"
-            android:text="Color C"
-            android:onClick="btnSetEffectAtmoWinColorChanger" />
+            android:id="@+id/btnAtmoWinExternalLiveEffect"
+            android:text="Live"
+            android:layout_gravity="right|bottom"
+            android:onClick="btnSetEffectAtmoWinExternalLiveMode" />
 
         <Button
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnAtmoWinColorChangerLREffect"
             android:text="Color C-LR"
             android:onClick="btnSetEffectAtmoWinColorChangerLR"
-            android:layout_gravity="center_horizontal|top"/>
+            android:layout_gravity="center_horizontal|bottom"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Atmowin effects"
+            android:id="@+id/tvAtmoWinEffects"
+            android:enabled="true"
+            android:layout_gravity="left|bottom|center_horizontal"
+            android:layout_marginBottom="50dp"/>
 
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:id="@+id/bnAtmoWinExternalLiveEffect"
-            android:text="Live"
-            android:layout_gravity="right|top"
-            android:onClick="btnSetEffectAtmoWinExternalLiveMode" />
+            android:id="@+id/btnGifReaderEffect"
+            android:text="GIF reader"
+            android:layout_gravity="center"
+            android:onClick="btnSetEffectGifReader"
+            android:layout_row="0"
+            android:layout_column="6"
+            android:layout_marginBottom="10dp"/>
 
     </FrameLayout>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"/>
 
     <CheckBox

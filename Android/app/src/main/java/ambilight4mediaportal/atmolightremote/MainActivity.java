@@ -1,6 +1,5 @@
 package ambilight4mediaportal.atmolightremote;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -9,9 +8,13 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
 
@@ -24,20 +27,30 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
-public class MainActivity extends AppCompatActivity {
-    // Default ColorMixer settings
+public class MainActivity extends Activity {
+    private Menu optionsMenu;
+
+    // Default settings and bindings
     private static final int COLOR_REQUEST=1337;
     private TextView color=null;
-    private CheckBox EnablePrioties;
+    private CheckBox enablePrioties;
+    private FrameLayout frameEffects;
+    private TextView tvAtmoWin;
+    private Button btnAtmoWinColorChanger;
+    private Button btnGIFreader;
+    private Button btnAtmoWinColorChangerLR;
+    private Button btnAtmoWinExternalLive;
     private ColorMixer mixer=null;
 
     // Preference settings
     Context mContext;
     SharedPreferences mPrefs;
+    SharedPreferences.Editor editor;
+    Settings settings;
     boolean startingApp = true;
 
     // Log settings
-    private static final String TAG = ColorMixer.class.getSimpleName();
+    private static final String TAG = "REMOTE_MAIN";
 
     // Multicast settings
     MulticastSocket m_socket;
@@ -62,18 +75,51 @@ public class MainActivity extends AppCompatActivity {
 
         // Default UI bindings
         color=(TextView)findViewById(R.id.color);
-        EnablePrioties=(CheckBox)findViewById(R.id.cbUsePriorities);
+        enablePrioties =(CheckBox)findViewById(R.id.cbUsePriorities);
 
         mixer=(ColorMixer)findViewById(R.id.mixer);
         mixer.setOnColorChangedListener(onColorChange);
+        tvAtmoWin =(TextView)findViewById(R.id.tvAtmoWinEffects);
+        btnGIFreader =(Button)findViewById(R.id.btnGifReaderEffect);
+        btnAtmoWinColorChanger =(Button)findViewById(R.id.btnAtmoWinColorChangerEffect);
+        btnAtmoWinColorChangerLR =(Button)findViewById(R.id.btnAtmoWinColorChangerLREffect);
+        btnAtmoWinExternalLive =(Button)findViewById(R.id.btnAtmoWinExternalLiveEffect);
+        frameEffects  =(FrameLayout)findViewById(R.id.FrameLayoutEffects);
 
         // Settings
+        settings = new Settings();
         mContext = getApplicationContext();
+        settings.init(mContext);
         mPrefs = mContext.getSharedPreferences("AtmoLightRemotePrefs", Context.MODE_PRIVATE);
 
         MultiCastInstance();
         LoadSettings();
         startingApp = false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.optionsMenu = menu;
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                NavigateSettingsActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void NavigateSettingsActivity()
+    {
+        Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivityForResult(i, 0);
     }
 
     public void MultiCastInstance()
@@ -109,24 +155,55 @@ public class MainActivity extends AppCompatActivity {
                 super.onActivityResult(requestCode, resultCode, result);
             }
         }
+
+        if (requestCode == 0) {
+            if (resultCode == RESULT_CANCELED) {
+                // user pressed back from 2nd activity to go to 1st activity. code here
+                LoadSettings();
+            }
+        }
     }
 
     private void LoadSettings()
     {
-
         int argb = mPrefs.getInt("AtmoLightColors", 0);
         Boolean PrioritiesEnabled = mPrefs.getBoolean("PrioritiesEnabled", false);
+        Boolean AtmoWinEffectsEnabled = mPrefs.getBoolean("AtmoWinEffectsEnabled", true);
+        Boolean GIFEffectEnabled = mPrefs.getBoolean("GifEffectEnabled", true);
 
         mixer.setColor(argb);
-        EnablePrioties.setChecked(PrioritiesEnabled);
+        enablePrioties.setChecked(PrioritiesEnabled);
+
+        if(AtmoWinEffectsEnabled) {
+            tvAtmoWin.setVisibility(View.VISIBLE);
+            btnAtmoWinColorChanger.setVisibility(View.VISIBLE);
+            btnAtmoWinColorChangerLR.setVisibility(View.VISIBLE);
+            btnAtmoWinExternalLive.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tvAtmoWin.setVisibility(View.INVISIBLE);
+            btnAtmoWinColorChanger.setVisibility(View.INVISIBLE);
+            btnAtmoWinColorChangerLR.setVisibility(View.INVISIBLE);
+            btnAtmoWinExternalLive.setVisibility(View.INVISIBLE);
+        }
+
+        if(GIFEffectEnabled)
+        {
+            btnGIFreader.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            btnGIFreader.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void SaveSettings()
     {
         int argb = mixer.getColor();
-        Boolean PrioritiesEnabled = EnablePrioties.isChecked();
+        Boolean PrioritiesEnabled = enablePrioties.isChecked();
 
-        SharedPreferences.Editor editor = mPrefs.edit();
+        editor = mPrefs.edit();
         editor.putInt("AtmoLightColors", argb);
         editor.putBoolean("PrioritiesEnabled", PrioritiesEnabled);
         editor.commit();
@@ -193,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                     String msg = "";
                     String priority = "999";
 
-                    if(EnablePrioties.isChecked())
+                    if(enablePrioties.isChecked())
                     {
                         priority = "100";
                     }

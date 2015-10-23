@@ -1,2 +1,1 @@
-*.apk
-**/build/
+/Android/app/*.apk
