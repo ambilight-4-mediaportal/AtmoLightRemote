@@ -14,12 +14,28 @@
     android:layout_height="wrap_content"
   />
 
-    <com.commonsware.cwac.colormixer.ColorMixer
-    android:id="@+id/mixer"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    mixer:cwac_colormixer_color="#FFFF00FF"
-  />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.commonsware.cwac.colormixer.ColorMixer
+        android:id="@+id/mixer"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        mixer:cwac_colormixer_color="#FFFF00FF"
+            android:layout_gravity="left" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnShowColorWheel"
+            android:background="@mipmap/ic_colorwheel"
+            android:enabled="true"
+            android:nestedScrollingEnabled="false"
+            android:onClick="btnShowColorPicker"
+            android:layout_gravity="center_vertical|right" />
+
+    </TableRow>
 
     <Space
         android:layout_width="match_parent"
@@ -117,8 +133,14 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.15"></TableRow>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -134,5 +156,13 @@
         android:id="@+id/btnClearPriorities"
         android:onClick="btnClearPriorities"
         android:layout_gravity="left|top"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12"
+        android:layout_gravity="center_horizontal">
+
+    </TableRow>
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package ambilight4mediaportal.atmolightremote;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +10,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +26,9 @@ import android.view.View;
 
 import com.commonsware.cwac.colormixer.ColorMixer;
 import com.commonsware.cwac.colormixer.ColorMixerActivity;
+
+import ambilight4mediaportal.atmolightremote.ColorPickerDialog;
+import ambilight4mediaportal.atmolightremote.ColorPickerDialog.OnColorSelectedListener;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -47,6 +56,7 @@ public class MainActivity extends Activity {
     SharedPreferences mPrefs;
     SharedPreferences.Editor editor;
     Settings settings;
+    boolean firstTimeRun;
     boolean startingApp = true;
 
     // Log settings
@@ -95,6 +105,12 @@ public class MainActivity extends Activity {
         MultiCastInstance();
         LoadSettings();
         startingApp = false;
+
+        if(firstTimeRun) {
+            firstRunSetup();
+            firstTimeRun = false;
+            SaveSettings();
+        }
     }
 
     @Override
@@ -108,9 +124,9 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            /*case R.id.action_settings:
                 NavigateSettingsActivity();
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -144,6 +160,29 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void firstRunSetup()
+    {
+        final SpannableString url = new SpannableString("forum.team-mediaportal.com/threads/atmolight-remote.132467/");
+
+        final TextView tx1 = new TextView(this);
+        tx1.setText("For first time setup a tutorial is located here: " + url);
+        tx1.setAutoLinkMask(RESULT_OK);
+        tx1.setMovementMethod(LinkMovementMethod.getInstance());
+
+        Linkify.addLinks(url, Linkify.WEB_URLS);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tutorial")
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                            }
+                        })
+
+                .setView(tx1).show();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode,
                                  Intent result) {
@@ -170,22 +209,30 @@ public class MainActivity extends Activity {
         Boolean PrioritiesEnabled = mPrefs.getBoolean("PrioritiesEnabled", false);
         Boolean AtmoWinEffectsEnabled = mPrefs.getBoolean("AtmoWinEffectsEnabled", true);
         Boolean GIFEffectEnabled = mPrefs.getBoolean("GifEffectEnabled", true);
+        firstTimeRun = mPrefs.getBoolean("FirstRun", true);
 
         mixer.setColor(argb);
+        int red = Color.red(argb);
+        int green = Color.green(argb);
+        int blue = Color.blue(argb);
+        String colorText = "R: " + red + " / " + "G: " + green + " / " + "B: " + blue;
+        color.setText(colorText);
+
         enablePrioties.setChecked(PrioritiesEnabled);
 
+        /*
         if(AtmoWinEffectsEnabled) {
-            tvAtmoWin.setVisibility(View.VISIBLE);
+            tvAtmoWin.setVisibility(View.GONE);
             btnAtmoWinColorChanger.setVisibility(View.VISIBLE);
             btnAtmoWinColorChangerLR.setVisibility(View.VISIBLE);
             btnAtmoWinExternalLive.setVisibility(View.VISIBLE);
         }
         else
         {
-            tvAtmoWin.setVisibility(View.INVISIBLE);
-            btnAtmoWinColorChanger.setVisibility(View.INVISIBLE);
-            btnAtmoWinColorChangerLR.setVisibility(View.INVISIBLE);
-            btnAtmoWinExternalLive.setVisibility(View.INVISIBLE);
+            tvAtmoWin.setVisibility(View.GONE);
+            btnAtmoWinColorChanger.setVisibility(View.GONE);
+            btnAtmoWinColorChangerLR.setVisibility(View.GONE);
+            btnAtmoWinExternalLive.setVisibility(View.GONE);
         }
 
         if(GIFEffectEnabled)
@@ -194,8 +241,8 @@ public class MainActivity extends Activity {
         }
         else
         {
-            btnGIFreader.setVisibility(View.INVISIBLE);
-        }
+            btnGIFreader.setVisibility(View.GONE);
+        }*/
     }
 
     private void SaveSettings()
@@ -204,6 +251,7 @@ public class MainActivity extends Activity {
         Boolean PrioritiesEnabled = enablePrioties.isChecked();
 
         editor = mPrefs.edit();
+        editor.putBoolean("FirstRun", firstTimeRun);
         editor.putInt("AtmoLightColors", argb);
         editor.putBoolean("PrioritiesEnabled", PrioritiesEnabled);
         editor.commit();
@@ -259,6 +307,18 @@ public class MainActivity extends Activity {
         new SendMultiCastData().execute("");
     }
 
+    private void createColorWheel()
+    {
+        ColorPickerDialog colorPickerDialog = new ColorPickerDialog(this, mixer.getColor(), new OnColorSelectedListener() {
+
+            @Override
+            public void onColorSelected(int color) {
+                mixer.setColor(color);
+            }
+        });
+        colorPickerDialog.show();
+    }
+
     private class SendMultiCastData extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
             {
@@ -309,7 +369,6 @@ public class MainActivity extends Activity {
     public void btnSetEffectDisable(View v) {
         setEffect("LEDsDisabled");
     }
-
     public void btnSetEffectLiveMode(View v) {
         setEffect("MediaPortalLiveMode");
     }
@@ -341,4 +400,16 @@ public class MainActivity extends Activity {
     public void btnClearPriorities(View v) {
         clearPriorities();
     }
+
+    public void  btnShowColorPicker (View v) {
+        ColorPickerDialog colorPickerDialog = new ColorPickerDialog(this, mixer.getColor(), new OnColorSelectedListener() {
+
+            @Override
+            public void onColorSelected(int color) {
+                mixer.setColor(color);
+            }
+        });
+        colorPickerDialog.show();
+    }
+
 }
